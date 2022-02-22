@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Project-Data-Capturing</title>
+</head>
+<body>
+<img alt="Poised-image" th:src="@{/images/cover-image.jpg}">
+<h1>Capture Project Data</h1>
+<form method="POST" th:object="${project}" th:action="@{/project}">
+	<div class="project">
+		
+		<label for="projectName">Project Name :</label>
+		<input name="projectName" type="text" th:field="*{projectName}">
+		<span th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}">Invalid project name</span>
+		
+		<label for="buidingType">Building Type :</label>
+		<input name="buildingType" type="text" th:field="*{buildingType}">
+		<span th:if="${#fields.hasErrors(buldignType)}" th:errors="*{buldingType}">Invalid building type</span>
+		
+		<label for="ERF">erf :</label>
+		<input name="ERF" type="text" th:field="*{ERF}">
+		<span th:if="${#fields.hasErrors('ERF')}" th:errors="*{ERF}">Invalid ERF</span>
+		
+		<label for="status">Status :</label>
+		<input name="status" type="text" th:field="*{status}">
+		
+		<label>Due-Date (YYYY/MM/DD) :</label>
+		<input name="dueDate" th:type="${#dates.create(year, month, day)}" th:field="*{dueDate}">
+		<span th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}">Invalid due date</span>
+		
+		<label>Starting date (YYYY/MM/DD) :</label>
+		<input name="startDate" th:type="${#dates.create(year, month, day)}" th:field="*{startDate}">
+		<span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Invalid starting date</span>
+		
+		<label>Update-Date (YYYY/MM/DD) :</label>
+		<input name="updateDate" th:type="${#dates.create(year, month, day)}" th:field="*{upddateDate}">
+		<span th:if="${#fields.hasErrors('updateDate')}" th:errors="*{updateDate}">Invalid update date</span>
+		
+		<label>Street Name :</label>
+	 	<input name="street-name" type="text" th:field="*{streetName}">
+	 	<span th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}">Invalid street name</span>
+	 	
+	 	<label>Suburb :</label>
+	 	<input name="suburb" type="text" th:field="*{suburb}">
+	 	<span th:if="${#fields.hasErrors('suburb')}" th:errors="*{suburb}">Invalid suburb</span>
+	 	
+	 	<label for="city">City :</label>
+	 	<input name="city" type="text" th:field="*{city}">
+	 	<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Invalid city</span>
+	 	
+	 	<label for="totalCost">Total Cost</label>
+	 	<input name="totalCost" type="text" th:field="*{totalCost}">
+	 	<span th:if="${#fields.hasErrors('totalCost')}" th:errors="*{totalCost}">Invalid total cost</span>
+	 
+	 	<label for="deposit">Deposit :</label>
+	 	<input name="deposit" type="text" th:field="*{deposit}">
+	 	<span th:if="${#fields.hasErrors('deposit')}" th:errors="*{deposit}">Invalid deposit</span>
+	</div>
+	<button>submit</button>
+
+</form>
+
+</body>
+</html>

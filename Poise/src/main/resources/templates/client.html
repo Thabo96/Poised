@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Client-Data-Capturing</title>
+</head>
+<body>
+<img target="poised-image" th:src="@{/images/cover-image.jpg}">
+<h1>Capture Client Data</h1>
+
+<form method="POST" th:object="${client}" th:action="@{/client}">
+	<div>
+		<label for="id">ID :</label>
+		<input name="id" type="text" th:field="*{id}">
+		<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Invalid id</span>
+		
+		<lable for="name">Name :</lable>
+		<input name="name" type="text" th:field="*{name}">
+		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</span>
+		
+		<label for="telephone">Telephone :</label>
+		<input name="telephone" type="text" th:field="*{telephone}">
+		<span th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}">Invalid telephone</span>
+		
+		<labele for="email">email :</labele>
+		<input name="email" type="text" th:field="*{email}">
+		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Invalid email</span>
+		
+		<label for="streetName">Street Name :</label>
+		<input name="streetName" type="text" th:field="*{streetName}">
+		<span th:if="${#fields.hasErrors('streetName)}" th:errors="*{streetName}">Invalid street name</span>
+		
+		<label for="suburb">Suburb :</label>
+		<input name="suburb" type="text" th:field="*{suburb}">
+		<span th:if="${#fields.hasErrors('suburb')}" th:errors="*{suburb}">Invalid suburb</span>
+		
+		<label for="city">City :</label>
+		<input name="city" type="text" th:field="*{city}">
+		<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Invalid city</span>
+	</div>
+	<button>submit</button>
+</form>
+
+</body>
+</html>

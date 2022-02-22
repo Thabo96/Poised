@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans  
+        xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:p="http://www.springframework.org/schema/p"  
+        xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       
+     
+		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">    
+			<property name="prefix" value="/WEB-INF/jsp/*"></property>    
+			<property name="suffix" value=".jsp"></property>    
+		</bean>  
+           
+        <bean id="poisedataSource" class="org.apache.commons.dbcp.BasicDataSource">  
+            <property name="driverClassName"  value="com.mysql.jdbc.Driver"></property>  
+            <property name="url" value="jdbc:mysql://localhost:3306"></property>  
+            <property name="username" value="poise"></property>  
+            <property name="password" value="Poise@123"></property>  
+        </bean>  
+           
+        <bean id="poisesessionFactory"  class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">  
+            <property name="dataSource" ref="poisedataSource"></property>  
+              
+            <property name="hibernateProperties">  
+                <props>  
+                    <prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>  
+                    <prop key="hibernate.hbm2ddl.auto">update</prop>  
+                    <prop key="hibernate.show_sql">true</prop>  
+                      
+                </props>  
+            </property>  
+        </bean>  
+          
+        <bean id="templateOne" class="org.springframework.orm.hibernate3.HibernateTemplate">  
+        <property name="sessionFactory" ref="poisesessionFactory"></property>  
+        </bean>  
+          
+        <bean id="projectdao" class="com.poise.beandao.ProjectDAO">  
+        <property name="template" ref="templateOne"></property>  
+        </bean>  
+        
+        <bean id="contractordao" class="com.poise.beandao.ContractorDAO">
+        <property name="template" ref="templateOne"></property>
+        </bean>
+        
+        <bean id="architectdao" class="com.poise.beandao.ArchitectDAO">
+        <property name="template" ref="templateOne"></property>
+        </bean>
+        
+        <bean id="clientdao" class="com.poise.beandao.ClientDAO">
+        <property name="template" ref="templateOne"></property>
+        </bean>
+          
+        </beans>  
